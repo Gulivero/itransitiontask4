@@ -1,0 +1,77 @@
+﻿@using WebApplication2.Models
+@using WebApplication2.Infrastructure
+@model UsersAndRolesModel
+
+@{
+    ViewBag.Title = "Список пользователей";
+}
+<script type="text/javascript">
+    function toggle(source) {
+        checkboxes = document.getElementsByName('foo');
+        for (var i = 0, n = checkboxes.length; i < n; i++) {
+            checkboxes[i].checked = source.checked;
+        }
+    }
+</script>
+@Html.ValidationSummary()
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Учетные записи
+        </div>
+        <button type="submit" name="action" value="Delete" class="btn btn-danger btn-xs">Удалить</button>
+        <button type="submit" name="action" value="Block" class="btn btn-danger btn-xs">Заблокировать</button>
+        <button type="submit" name="action" value="Unblock" class="btn btn-primary btn-xs">Разблокировать</button>
+
+        <form id="frm1">
+            <table class="table table-striped">
+                <tr>
+                    <th><input type='checkbox' name='checkall' onclick='toggle(this);'> Выделить всё</th>
+                    <th>Id</th>
+                    <th>Имя</th>
+                    <th>Email</th>
+                    <th>Дата регистрации</th>
+                    <th>Дата последнего логина</th>
+                    <th>Статус</th>
+                    <th></th>
+                </tr>
+                @if (Model.Users.Count() == 0)
+                {
+                    <tr>
+                        <td colspan="4" class="text-center">Нет ни одной учетной записи</td>
+                    </tr>
+                }
+                else
+                {
+                    foreach (AppUser user in Model.Users)
+                    {
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="foo" value="@user.Id">
+                            </td>
+                            <td>@user.Id</td>
+                            <td>@user.UserName</td>
+                            <td>@user.Email</td>
+                            <td>@user.registerDate</td>
+                            <td>@user.lastLogin</td>
+                            @{
+
+                                var us = Model.Roles.First(x => x.Name == "Unblock").Users.Select(y => y.UserId).Contains(user.Id);
+                                if (us)
+                                {
+                                    <td>Unblock</td>
+                                }
+                                else
+                                {
+                                    <td>Block</td>
+                                }
+                            }
+                        </tr>
+                    }
+                }
+            </table>
+        </form>
+    </div>
+    @Html.ActionLink("Выйти", "Logout", "Account", null, new { @class = "btn btn-primary" })
+}
