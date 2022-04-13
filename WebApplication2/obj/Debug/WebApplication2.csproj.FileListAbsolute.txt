@@ -105,3 +105,6 @@ D:\Nikita\Work\ItransitionDotNet\WebApplication2\WebApplication2\bin\Microsoft.O
 D:\Nikita\Work\ItransitionDotNet\WebApplication2\WebApplication2\bin\Microsoft.Owin.Security.xml
 D:\Nikita\Work\ItransitionDotNet\WebApplication2\WebApplication2\bin\Microsoft.Owin.Security.Cookies.xml
 D:\Nikita\Work\ItransitionDotNet\WebApplication2\WebApplication2\bin\Microsoft.Owin.Security.OAuth.xml
+D:\Nikita\Work\ItransitionDotNet\WebApplication2\WebApplication2\bin\ru\Microsoft.Owin.resources.dll
+D:\Nikita\Work\ItransitionDotNet\WebApplication2\WebApplication2\bin\ru\Microsoft.Owin.Host.SystemWeb.resources.dll
+D:\Nikita\Work\ItransitionDotNet\WebApplication2\WebApplication2\bin\ru\Microsoft.Owin.Security.resources.dll

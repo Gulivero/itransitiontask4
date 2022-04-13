@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
-  <parameter name="IdentityDb-Web.config Connection String" description="IdentityDb Строка подключения в web.config, используемая приложением для доступа к базе данных." defaultValue="Data Source=SQL8001.site4now.net;Initial Catalog=db_a856d9_identitydb;User Id=db_a856d9_identitydb_admin;Password=rehbnmnhfde005;Integrated Security=True;MultipleActiveResultSets=True;" tags="SqlConnectionString">
+  <parameter name="IdentityDb-Web.config Connection String" description="IdentityDb Строка подключения в web.config, используемая приложением для доступа к базе данных." defaultValue="Data Source=SQL8001.site4now.net;Initial Catalog=db_a856d9_identitydb;User Id=db_a856d9_identitydb_admin;Password=rehbnmnhfde005;MultipleActiveResultSets=True" tags="SqlConnectionString">
     <parameterEntry kind="XmlFile" scope="D:\\Nikita\\Work\\ItransitionDotNet\\WebApplication2\\WebApplication2\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='IdentityDb']/@connectionString" />
   </parameter>
   <parameter name="WebApplication2.Infrastructure.AppIdentityDbContext-Web.config Connection String" description="WebApplication2.Infrastructure.AppIdentityDbContext Строка подключения в web.config, используемая приложением для доступа к базе данных." defaultValue="WebApplication2.Infrastructure.AppIdentityDbContext_ConnectionString" tags="SqlConnectionString">

@@ -9,6 +9,8 @@ namespace WebApplication2.Infrastructure
     {
         public AppIdentityDbContext() : base("name=IdentityDb") { }
 
+        public DbSet<Message> Messages { get; set; }
+
         static AppIdentityDbContext()
         {
             Database.SetInitializer<AppIdentityDbContext>(new IdentityDbInit());

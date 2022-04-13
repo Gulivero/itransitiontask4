@@ -1,10 +1,10 @@
 ﻿@using WebApplication2.Models
-@using WebApplication2.Infrastructure
 @model UsersAndRolesModel
 
 @{
     ViewBag.Title = "Список пользователей";
 }
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
     function toggle(source) {
         checkboxes = document.getElementsByName('foo');
@@ -14,11 +14,14 @@
     }
 </script>
 @Html.ValidationSummary()
+
 @using (Html.BeginForm("Index", "Home", FormMethod.Post))
 {
     <div class="panel panel-primary">
         <div class="panel-heading">
-            Учетные записи
+            <h2 class="accordion-header" id="headingOne">
+                Учетные записи
+            </h2>
         </div>
         <button type="submit" name="action" value="Delete" class="btn btn-danger btn-xs">Удалить</button>
         <button type="submit" name="action" value="Block" class="btn btn-danger btn-xs">Заблокировать</button>
@@ -75,3 +78,56 @@
     </div>
     @Html.ActionLink("Выйти", "Logout", "Account", null, new { @class = "btn btn-primary" })
 }
+
+<h2 class="accordion-header" id="headingOne">Отправка сообщения</h2>
+
+@using (Html.BeginForm("Send", "Home", FormMethod.Post))
+{
+    <div class="form-group">
+        <label for="recname">Имя получателя</label>
+        <input type="text" name="username" class="form-control" id="recname">
+    </div>
+    <div class="form-group">
+        <label for="subject">Тема</label>
+        <input type="text" name="subject" class="form-control" id="subject">
+    </div>
+    <div class="form-group">
+        <label for="message">Сообщение</label>
+        <textarea class="form-control" name="messageText" id="message" rows="3"></textarea>
+    </div>
+    <button type="submit" name="action" value="send" class="btn btn-primary">Отправить</button>
+}
+<div class="panel">
+    <div class="panel-heading">
+        <h2 class="accordion-header" id="headingOne">Входящие</h2>
+    </div>
+    <div class="accordion" id="accordionExample">
+        @if (!Model.Messages.Any(x => x.RecieverId == Model.Users.First(y => y.UserName == HttpContext.Current.User.Identity.Name).Id))
+        {
+            <span class="text-center">Нет ни одного сообщения</span>
+        }
+        else
+        {
+            foreach (Message message in Model.Messages)
+            {
+                if (message.RecieverId == Model.Users.First(x => x.UserName == HttpContext.Current.User.Identity.Name).Id)
+                {
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#a_@message.Id" aria-expanded="true" aria-controls="a_@message.Id">
+                                Тема: @message.Subject
+                            </button>
+                        </h2>
+                        <div id="a_@message.Id" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <p>@message.Text</p>
+                                <p>Отправитель: @Model.Users.First(x => x.Id == message.SenderId).UserName</p>
+                                <p>Дата получения: @message.Created</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        }
+    </div>
+</div>

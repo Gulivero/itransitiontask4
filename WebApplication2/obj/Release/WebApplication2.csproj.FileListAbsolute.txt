@@ -105,3 +105,6 @@ D:\Nikita\Work\ItransitionDotNet\WebApplication2\WebApplication2\obj\Release\Web
 D:\Nikita\Work\ItransitionDotNet\WebApplication2\WebApplication2\obj\Release\WebApplication2.csproj.CopyComplete
 D:\Nikita\Work\ItransitionDotNet\WebApplication2\WebApplication2\obj\Release\WebApplication2.dll
 D:\Nikita\Work\ItransitionDotNet\WebApplication2\WebApplication2\obj\Release\WebApplication2.pdb
+D:\Nikita\Work\ItransitionDotNet\WebApplication2\WebApplication2\bin\ru\Microsoft.Owin.resources.dll
+D:\Nikita\Work\ItransitionDotNet\WebApplication2\WebApplication2\bin\ru\Microsoft.Owin.Host.SystemWeb.resources.dll
+D:\Nikita\Work\ItransitionDotNet\WebApplication2\WebApplication2\bin\ru\Microsoft.Owin.Security.resources.dll

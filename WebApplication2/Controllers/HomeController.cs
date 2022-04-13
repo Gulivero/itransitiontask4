@@ -12,6 +12,7 @@ namespace WebApplication2.Controllers
     [Authorize(Roles = "Unblock")]
     public class HomeController : Controller
     {
+        AppIdentityDbContext db = new AppIdentityDbContext();
         public ActionResult Index()
         {
             var userId = HttpContext.User.Identity.GetUserId();
@@ -28,7 +29,7 @@ namespace WebApplication2.Controllers
             IdentityResult result = UserManager.Update(user);
             if (result.Succeeded)
             {
-                return View(new UsersAndRolesModel { Users = UserManager.Users, Roles = RoleManager.Roles });
+                return View(new UsersAndRolesModel { Users = UserManager.Users, Roles = RoleManager.Roles, Messages = db.Messages });
             }
             else
             {
@@ -97,6 +98,31 @@ namespace WebApplication2.Controllers
 
                 }
             }
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Send(string action, string username, string subject, string messageText)
+        {
+            if (action == "send")
+            {
+                var user = await UserManager.FindByNameAsync(username);
+                if (user != null)
+                {
+                    Message message = new Message() 
+                    { 
+                        Subject = subject, 
+                        Text = messageText, 
+                        SenderId = HttpContext.User.Identity.GetUserId(), 
+                        Created = DateTime.Now, 
+                        RecieverId = user.Id
+                    };
+
+                    db.Messages.Add(message);
+                    db.SaveChanges();
+                }
+            }
+
             return RedirectToAction("Index");
         }
 

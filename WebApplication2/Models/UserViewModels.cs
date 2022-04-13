@@ -29,5 +29,7 @@ namespace WebApplication2.Models
         public IEnumerable<AppUser> Users { get; set; }
 
         public IEnumerable<AppRole> Roles { get; set; }
+
+        public IEnumerable<Message> Messages { get; set; }
     }
 }
